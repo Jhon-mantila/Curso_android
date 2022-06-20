@@ -1,58 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/contador_pulsasiones"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="Contador:"
-        android:textSize="60px"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/resetear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#FFEB3B"
-        android:text="Resetear"
-        android:onClick="resetea_contador"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contador_pulsasiones" />
+        <TextView
+            android:id="@+id/TituloTexto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:text="Contador:"
+            android:textSize="60px" />
 
-    <Button
-        android:id="@+id/incrementar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="INCREMENTAR"
-        android:onClick="incrementa_contador"
-        app:layout_constraintBottom_toTopOf="@+id/resetear"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contador_pulsasiones"
-        app:layout_constraintVertical_bias="0.913" />
+        <TextView
+            android:id="@+id/ContadorTexto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="96sp" />
 
-    <Button
-        android:id="@+id/restar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Restar"
-        android:onClick="resta_contador"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/resetear"
-        app:layout_constraintVertical_bias="0.098" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center|center_vertical"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/incrementar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="incrementa_contador"
+            android:text="+"
+            android:textSize="48sp" />
+
+        <Space
+            android:layout_width="75dp"
+            android:layout_height="0dp"
+            android:layout_weight="0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/restar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="resta_contador"
+            android:text="-"
+            android:textSize="48sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom|center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/resetear"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="30dp"
+            android:background="#FFEB3B"
+            android:onClick="resetea_contador"
+            android:text="Resetear" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,7 +1,5 @@
 package com.example.app_contador;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -37,8 +35,8 @@ public class MainActivity extends Activity {
 
     public void mostrarResultado(){
         //                                                Poder acceder al id de una vista
-        TextView textoResultado = (TextView) findViewById(R.id.contador_pulsasiones);
+        TextView textoResultado = (TextView) findViewById(R.id.ContadorTexto);
 
-        textoResultado.setText("Contador: " + contador);
+        textoResultado.setText("" + contador);
     }
 }
