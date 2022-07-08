@@ -2,7 +2,9 @@ package com.example.app_contador;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -21,6 +23,13 @@ public class MainActivity extends Activity {
 
         textoResultado = (TextView) findViewById(R.id.ContadorTexto);
         contador = 0;
+
+        /*utilizando eventos para ocultar teclado con el boton de ok del teclado*/
+        EventoTelcado teclado = new EventoTelcado();
+
+        EditText campo_reseto = (EditText) findViewById(R.id.n_reseteo);
+
+        campo_reseto.setOnEditorActionListener(teclado);
     }
 
     public void  incrementa_contador(View vista){
@@ -65,7 +74,7 @@ public class MainActivity extends Activity {
 
         textoResultado.setText(""+contador);
 
-        //OCULTANDO TECLADO
+        //OCULTANDO TECLADO con el boton resetear
         InputMethodManager miteclado = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
 
         miteclado.hideSoftInputFromWindow(numero_reset.getWindowToken(), 0);
@@ -78,5 +87,17 @@ public class MainActivity extends Activity {
         textoResultado.setText("" + contador);
     }*/
 
+    private class EventoTelcado implements TextView.OnEditorActionListener{
+
+        @Override
+        public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+            //Si le damos boton ok en el teclado llama la function resetea_contador()
+            if(actionId == EditorInfo.IME_ACTION_DONE){
+                resetea_contador(null);
+            }
+
+            return false;
+        }
+    }
 
 }
