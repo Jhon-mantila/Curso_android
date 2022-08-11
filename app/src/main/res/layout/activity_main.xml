@@ -62,7 +62,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="bottom|center_horizontal"
         android:orientation="horizontal">
@@ -71,8 +71,9 @@
             android:id="@+id/resetear"
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:layout_marginBottom="30dp"
+            android:layout_gravity="bottom|center_horizontal"
             android:layout_marginLeft="20dp"
+            android:layout_marginBottom="30dp"
             android:background="#FFEB3B"
             android:onClick="resetea_contador"
             android:text="Resetear" />
@@ -84,7 +85,7 @@
             android:layout_marginBottom="30dp"
             android:cursorVisible="false"
             android:ems="10"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:hint="0"
             android:inputType="number" />
 
@@ -92,6 +93,7 @@
             android:id="@+id/negativos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
             android:layout_marginBottom="30dp"
             android:layout_weight="1"
             android:text="Conteo Negativo" />

@@ -22,7 +22,10 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         textoResultado = (TextView) findViewById(R.id.ContadorTexto);
+
         contador = 0;
+
+        textoResultado.setText(" "+ contador);
 
         /*utilizando eventos para ocultar teclado con el boton de ok del teclado*/
         EventoTelcado teclado = new EventoTelcado();
@@ -30,6 +33,25 @@ public class MainActivity extends Activity {
         EditText campo_reseto = (EditText) findViewById(R.id.n_reseteo);
 
         campo_reseto.setOnEditorActionListener(teclado);
+    }
+
+    //para la persistencia de datos
+    public void onSaveInstanceState(Bundle estado){
+
+        estado.putInt("cuenta", contador);
+        //pasarle al metodo el bandle, este llamado hace referencia al metodo de la clase padre no al metodo
+        //acabado de hacer
+        super.onSaveInstanceState(estado);
+    }
+    //recuperar los datos (persistencia de datos)
+    public void onRestoreInstanceState(Bundle estado){
+        //lo mismo llamo al metodo de la clase padre no el q acabo de crear para recuperar los datos
+        super.onRestoreInstanceState(estado);
+
+        contador = estado.getInt("cuenta");
+
+        textoResultado.setText(""+contador);
+
     }
 
     public void  incrementa_contador(View vista){
