@@ -1,7 +1,9 @@
 package com.example.app_contador;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -9,6 +11,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import java.lang.ref.PhantomReference;
 
 public class MainActivity extends Activity {
 
@@ -35,15 +39,15 @@ public class MainActivity extends Activity {
         campo_reseto.setOnEditorActionListener(teclado);
     }
 
-    //para la persistencia de datos
-    public void onSaveInstanceState(Bundle estado){
+    //para la persistencia de datos con BUNDLE
+   /* public void onSaveInstanceState(Bundle estado){
 
         estado.putInt("cuenta", contador);
         //pasarle al metodo el bandle, este llamado hace referencia al metodo de la clase padre no al metodo
         //acabado de hacer
         super.onSaveInstanceState(estado);
     }
-    //recuperar los datos (persistencia de datos)
+    //recuperar los datos (persistencia de datos) bundle
     public void onRestoreInstanceState(Bundle estado){
         //lo mismo llamo al metodo de la clase padre no el q acabo de crear para recuperar los datos
         super.onRestoreInstanceState(estado);
@@ -51,6 +55,37 @@ public class MainActivity extends Activity {
         contador = estado.getInt("cuenta");
 
         textoResultado.setText(""+contador);
+
+    }*/
+
+    //para la persistencia de datos con SharedPreferences
+    public void onPause(){
+
+        super.onPause();
+
+        //1. Crear u obtener objeto SharedPreferences
+        SharedPreferences datos = PreferenceManager.getDefaultSharedPreferences(this);
+
+        //2. Hacer editable el obj SharedPreference
+        SharedPreferences.Editor mieditor = datos.edit();
+
+        //3.Establecer información a almacenar
+        mieditor.putInt("cuenta", contador);
+
+        //4. Transferir la información a SharedPreference
+        mieditor.apply();
+
+    }
+
+    //recuperar los datos (persistencia de datos) sharedPreferences
+    public void onResume(){
+        super.onResume();
+        //debemos acceder al objecto almacenado en el sharedpreferences
+        SharedPreferences datos = PreferenceManager.getDefaultSharedPreferences(this);
+        //el segundo parametro hace referencia en caso no haber encontrado el valor
+        contador = datos.getInt("cuenta",0);
+
+        textoResultado.setText("" + contador);
 
     }
 
